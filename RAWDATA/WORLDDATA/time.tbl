@@ -1,0 +1,3 @@
+concept: ~indexedmonthnames (January February March April May June July August September October November December)
+concept: ~daysinmonth DUPLICATE (31 28 31 30 31 30 31 31 30 31 30 31 )
+# nth(~indexedmonthnames _0) returns name of month given 0..11 index

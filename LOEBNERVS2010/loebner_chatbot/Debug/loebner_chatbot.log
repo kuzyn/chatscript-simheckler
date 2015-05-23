@@ -1,0 +1,89 @@
+﻿Build started 11/18/2014 7:41:43 PM.
+     1>Project "C:\ChatScript\LOEBNERVS2010\loebner_chatbot\loebner_chatbot.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Creating "Debug\loebner_chatbot.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D LOEBNER /D WIN32 /D _DEBUG /D _WINDOWS /D _LOEBNER /D _MBCS /Gm /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /FR"Debug\\" /Gd /TP /analyze- /errorReport:prompt ..\..\src\constructCode.cpp ..\..\src\csocket.cpp ..\..\src\dictionarySystem.cpp ..\..\src\english.cpp ..\..\src\englishtagger.cpp ..\..\src\factSystem.cpp ..\..\src\functionExecute.cpp ..\..\src\infer.cpp ..\..\src\mainSystem.cpp ..\..\src\markSystem.cpp ..\..\src\os.cpp ..\..\src\outputSystem.cpp ..\..\src\patternSystem.cpp ..\..\src\readrawdata.cpp ..\..\src\scriptCompile.cpp ..\..\src\spellcheck.cpp ..\..\src\systemVariables.cpp ..\..\src\tagger.cpp ..\..\src\testing.cpp ..\..\src\textUtilities.cpp ..\..\src\tokenSystem.cpp ..\..\src\topicSystem.cpp ..\..\src\userCache.cpp ..\..\src\userSystem.cpp ..\..\src\variableSystem.cpp loebner_chatbot.cpp /J 
+         topicSystem.cpp
+         testing.cpp
+         systemVariables.cpp
+         scriptCompile.cpp
+         os.cpp
+         markSystem.cpp
+         mainSystem.cpp
+     1>c:\chatscript\src\mainsystem.cpp(735): warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+         infer.cpp
+         functionExecute.cpp
+         factSystem.cpp
+         dictionarySystem.cpp
+     1>c:\chatscript\src\dictionarysystem.cpp(384): warning C4244: 'initializing' : conversion from 'uint64' to 'size_t', possible loss of data
+         csocket.cpp
+         Generating Code...
+         Compiling...
+         loebner_chatbot.cpp
+         variableSystem.cpp
+         userSystem.cpp
+         userCache.cpp
+         tokenSystem.cpp
+         textUtilities.cpp
+         tagger.cpp
+         spellcheck.cpp
+         readrawdata.cpp
+         patternSystem.cpp
+         outputSystem.cpp
+         englishtagger.cpp
+         english.cpp
+         constructCode.cpp
+         Generating Code...
+       ResourceCompile:
+         All outputs are up-to-date.
+       ManifestResourceCompile:
+         All outputs are up-to-date.
+       Link:
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"..\..\loebner.exe" /INCREMENTAL /NOLOGO Ws2_32.lib Winmm.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /NODEFAULTLIB:Nafxcwd.lib /MANIFEST /ManifestFile:"Debug\loebner.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\ChatScript\loebner.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\..\loebner.lib" /MACHINE:X86 Debug\loebner_chatbot.res
+         Debug\loebner.exe.embed.manifest.res
+         Debug\constructCode.obj
+         Debug\csocket.obj
+         Debug\debugger.obj
+         Debug\dictionarySystem.obj
+         Debug\english.obj
+         Debug\englishtagger.obj
+         Debug\factSystem.obj
+         Debug\functionExecute.obj
+         Debug\infer.obj
+         Debug\mainSystem.obj
+         Debug\markSystem.obj
+         Debug\os.obj
+         Debug\outputSystem.obj
+         Debug\patternSystem.obj
+         Debug\readrawdata.obj
+         Debug\scriptCompile.obj
+         Debug\spellcheck.obj
+         Debug\systemVariables.obj
+         Debug\tagger.obj
+         Debug\testing.obj
+         Debug\textUtilities.obj
+         Debug\tokenSystem.obj
+         Debug\topicSystem.obj
+         Debug\userCache.obj
+         Debug\userSystem.obj
+         Debug\variableSystem.obj
+         Debug\loebner_chatbot.obj
+         Debug\stdafx.obj
+         LINK : ..\..\loebner.exe not found or not built by the last incremental link; performing full link
+       Manifest:
+         c:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /out:"Debug\loebner.exe.embed.manifest" /manifest Debug\loebner.exe.intermediate.manifest
+         All outputs are up-to-date.
+       LinkEmbedManifest:
+         All outputs are up-to-date.
+         loebner_chatbot.vcxproj -> C:\ChatScript\LOEBNERVS2010\loebner_chatbot\..\..\loebner.exe
+       BscMake:
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\bscmake.exe /nologo /o"..\..\loebner.bsc" Debug\constructCode.sbr Debug\csocket.sbr Debug\debugger.sbr Debug\dictionarySystem.sbr Debug\english.sbr Debug\englishtagger.sbr Debug\factSystem.sbr Debug\functionExecute.sbr Debug\infer.sbr Debug\mainSystem.sbr Debug\markSystem.sbr Debug\os.sbr Debug\outputSystem.sbr Debug\patternSystem.sbr Debug\readrawdata.sbr Debug\scriptCompile.sbr Debug\spellcheck.sbr Debug\systemVariables.sbr Debug\tagger.sbr Debug\testing.sbr Debug\textUtilities.sbr Debug\tokenSystem.sbr Debug\topicSystem.sbr Debug\userCache.sbr Debug\userSystem.sbr Debug\variableSystem.sbr Debug\loebner_chatbot.sbr Debug\stdafx.sbr
+       FinalizeBuildStatus:
+         Deleting file "Debug\loebner_chatbot.unsuccessfulbuild".
+         Touching "Debug\loebner_chatbot.lastbuildstate".
+     1>Done Building Project "C:\ChatScript\LOEBNERVS2010\loebner_chatbot\loebner_chatbot.vcxproj" (build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:47.31
