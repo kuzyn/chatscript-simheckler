@@ -1,1 +1,0 @@
-nohup ./LinuxChatScript32 2>nohup.log &
