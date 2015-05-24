@@ -1,0 +1,34 @@
+﻿evserver child fork requests: 0
+  evserver: running
+Server EVSERVER ChatScript Version 5.31  32 bit LINUX compiled May 10 2015 23:23:02
+Params:   dict:720895 fact:800000 text:35000kb hash:50000 
+          buffer:22x80kb cache:1x50kb userfacts:100
+Build0:  dict=68634  fact=131081  dtext=1161560 stext=0 May10'15-11:05:03 0.txt
+Build1:  dict=43  fact=15  dtext=2616 stext=204776 May10'15-11:05:11 harry.txt
+Used 47MB: dict 269,788 (22662kb) hashdepth 17/7 fact 216,814 (8672kb) text 14345kb
+           buffer (1760kb) cache (50kb) POS: 835 (26kb)
+Free 43MB: dict 451,107 hash 932 fact 583,186 text 20,654KB 
+
+    *** Server WIDE OPEN to :command use.
+    Postgres disabled.
+
+
+======== Began EV server 5.31 compiled May 10 2015 23:23:02 on port 1024 at Sat May 23 19:06:24 2015 serverlog:1 userlog: 1
+evserver: parent ready (pid = 18857), fork=0
+evserver child fork requests: 0
+  evserver: running
+Server EVSERVER ChatScript Version 5.31  32 bit LINUX compiled May 10 2015 23:23:02
+Params:   dict:720895 fact:800000 text:35000kb hash:50000 
+          buffer:22x80kb cache:1x50kb userfacts:100
+Build0:  dict=68634  fact=131081  dtext=1161560 stext=0 May10'15-11:05:03 0.txt
+Build1:  dict=43  fact=15  dtext=2616 stext=204776 May10'15-11:05:11 harry.txt
+Used 47MB: dict 269,788 (22662kb) hashdepth 17/7 fact 216,814 (8672kb) text 14345kb
+           buffer (1760kb) cache (50kb) POS: 835 (26kb)
+Free 43MB: dict 451,107 hash 932 fact 583,186 text 20,654KB 
+
+    *** Server WIDE OPEN to :command use.
+    Postgres disabled.
+
+
+======== Began EV server 5.31 compiled May 10 2015 23:23:02 on port 1024 at Sat May 23 19:11:25 2015 serverlog:1 userlog: 1
+evserver: parent ready (pid = 19714), fork=0
