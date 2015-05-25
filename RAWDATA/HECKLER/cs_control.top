@@ -8,6 +8,15 @@ $cs_control_post = ~XPOSTPROCESS
 $userprompt = ^"heckler: >"
 $botprompt = ^"comedian: "
 
+# variables
+$city_name = null
+$comedian_enjoy = null
+$comedian_annoy = null
+$crowd_enjoy = null
+$crowd_annoy = null
+$routine_finnished = null
+$set_finnished = null
+
 table: defaultbot (^name)
 ^createfact(^name defaultbot defaultbot)
 DATA:
@@ -18,7 +27,7 @@ topic: ~control system ()
 # debug and dev cases
 u: (< shut up >) $shutup = 1
 u: (< talk >) $shutup = null
-u: (< say _*) keep() repeat() '_0
+u: (< say _*) ^keep() ^repeat() '_0
 
 u: (\[ callback \]) Callback seen.
 u: (\[ loopback \]) Loopback seen.
@@ -29,7 +38,7 @@ u: (< alarm test) \[ alarm=5000 \] Alarm requested.
 
 # on startup, do introduction
 u: ( %input<%userfirstline) 
-	gambit(~introductions)
+	^gambit(~introductions)
 
 u: () # main per-sentence processing
 
@@ -95,25 +104,35 @@ u: () # main per-sentence processing
 	}
 	if (%response == 0){ nofail(TOPIC ^gambit($$currenttopic)) } # gambit from current topic even though no keywords matched
 	
-	if (%response == 0) 
-	{ 
-		@8 = ^GambitTopics()		# all topics with gambits (excluding system topics)
-		loop()
-		{
-			$$topic = pick(@8subject)
-			nofail(TOPIC ^Gambit($$topic))	# try a topic at random
-			if (%response != 0)
-			{
-				^end(RULE)
-			}
-		}
-	}
+	if ( %response == 0 AND $routine_finnished AND $set_finnished) {
+		^repeat() ^keep() 
+		[\*the room empties\*] [\*people shuffle\*] [\*people wonder why you're still staring\*]
+	}	
 	
-	if (%response == 0) 
-	{
-		 ^repeat() 
-		 I don't know what to say. 
+	if ( %response == 0 AND $routine_finnished AND !$set_finnished) {
+		Thank you $city_name, that was a great night!
+		$set_finnished = 1
 	}
+
+#	if (%response == 0) 
+#	{ 
+#		@8 = ^GambitTopics()		# all topics with gambits (excluding system topics)
+#		loop()
+#		{
+#			$$topic = pick(@8subject)
+#			nofail(TOPIC ^Gambit($$topic))	# try a topic at random
+#			if (%response != 0)
+#			{
+#				^end(RULE)
+#			}
+#		}
+#	}
+	
+#	if (%response == 0) 
+#	{
+#		 ^repeat() 
+#		 I don't know what to say. 
+#	}
 
 topic: ~XPOSTPROCESS system () # gambits only - not allowed to write to  output - generates speech on windows -- for Linux you'd want to install Festival (or equivalent) and call that instead.
 

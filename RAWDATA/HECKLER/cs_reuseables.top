@@ -1,6 +1,14 @@
 topic: ~reuseables system ()
 
+# concepts
+
 # reusable comedian bits
-u: ELIPSE ( < ... > )... ^keep()
-u: LAUGH ( < ha-ha > ) ha-ha! ^keep()
-u: MOVEONE ( < move on > ) [Anyway...] [So, as I was saying...] [Hm. Okay... So...] ^keep()
+u: ELIPSE ( < ... > )... ^keep() ^repeat()
+u: LAUGH ( < ha-ha > ) Ha-ha! ^keep() ^repeat()
+u: MOVEONE ( < move on > ) [Anyway...] [So, as I was saying...] [Hm. Okay... So...] ^keep() ^repeat()
+
+# Score
+u: COMEDIANENJOY ( < comedian enjoy > ) $comedian_enjoy += 1 Comedian enjoy is $comedian_enjoy ^keep() ^repeat()
+u: COMEDIANANNOY ( < comedian annoy > ) $comedian_annoy += 1 Comedian annoy is $comedian_annoy ^keep() ^repeat()
+u: CROWDENJOY ( < crowd enjoy > ) $crowd_annoy += 1 Crowd enjoy is $crowd_annoy ^keep() ^repeat()
+u: CROWDANNOY ( < crowd annoy > ) $crowd_enjoy += 1 Crowd annoy is $crowd_enjoy ^keep() ^repeat()

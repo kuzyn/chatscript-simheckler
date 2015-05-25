@@ -3,18 +3,23 @@ topic: ~INTRODUCTIONS (~emogoodbye ~emohello ~emohowzit name here )
 
 #!x will match on every return start of a conversation 
 t: ( %input<%userfirstline %input>0 ) 
-	^keep()  
-	[Hello Cleveland!][Good evening Nashville!][What's up Montreal!][Fuck you Detroit!][What the fuck Kansas City!]
+	^keep() 
+	$city_name = ^pick( ~city )
+	Good evening $city_name! 
 
 #!x matches every time on startup of a new conversation
 t: ( %input<%userfirstline ) 
-	^keep()   
-	Welcome to the comedy club!
+	^keep()
+	if(!$city_name) {
+		$city_name = ^pick( ~city )
+	}   
+	Welcome to the $city_name comedy club!
 
 #!x issued only once, then erased
 t: How are you doing tonight?
-	a: ( ~goodness ) Alright! Let's get to it then ^reuse(reuseables.ELIPSE) ^gambit(~comedian_routine_moth)
-	a: ( ~badness ) Booh-ooo! Well I don't really care! ^reuse(reuseables.LAUGH) ^gambit(~comedian_routine_moth)
+	a: ( ~goodness ) Alright! Let's get to it then ^reuse(reuseables.ELIPSE) ^gambit( short )
+	a: ( ~badness ) Booh-ooo! Well I don't really care! ^reuse(reuseables.LAUGH) ^gambit( short )
+	a: ( * ) ^gambit( short )
 
 #! what is your name 
 u: ( what is your name ) My name is James Carlton.

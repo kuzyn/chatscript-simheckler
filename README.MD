@@ -1,7 +1,7 @@
 # SimHeckler
 ### Think like a heckler... BE THE HECKLER!
 
-_v0.01 / Mai 2015_  
+_v0.0.1 / Mai 2015_  
 CS 5.31
 
 ### Installation
@@ -12,11 +12,11 @@ CS 5.31
 
 ### Intentions
 
-_The heckler’s game AKA “An evening as James Carlton”_
+_The heckler’s game AKA "An evening as James Carlton"_
 
->“But heckling is something else. At its best, it is almost a conspiracy between the heckler and the heckled,
+>"But heckling is something else. At its best, it is almost a conspiracy between the heckler and the heckled,
 born out of mutual antagonism but mitigated by combative wit; a gamble, too, since neither player can be
-sure that he ­ it is usually a testosterone­charged he ­ will come off best.”
+sure that he ­ it is usually a testosterone­charged he ­ will come off best."
 >
 >_The Guardian, A brief history of heckling, Michael White 2006_
 
@@ -25,7 +25,7 @@ heckling him. That is, you interrupt his monologue with witty counters, insults 
 Your goal is to steal the show, his goal is to nail you with hard to follow retorts or retort to your
 retorts.
 
-The longer the volley, the bigger the stakes. If you cannot “connect”, that is connect your retorts
+The longer the volley, the bigger the stakes. If you cannot "connect", that is connect your retorts
 with what the comedian is saying, he wins. Every (chosen) intervention is a short bout where
 both participant try to outwit or trap the other.
 
@@ -38,17 +38,17 @@ both participant try to outwit or trap the other.
 
 #### Game Design ####
 * Points are gained and lost during exchanges
-* The player can ”stay pat” and not intervene; the monologue continue nonetheless
+* The player can "stay pat" and not intervene; the monologue continue nonetheless
 * The player tries to accumulate points by connecting with the comedian’s jokes
 * The player tries to preserve points by avoiding hard or slippery counter retorts
 * Harder to connect jokes yield more points
 * The longer the rally, the bigger the stakes (points add up during a round/joke)
 * A good analogy would be the game of battle (playing cards): drawing two identical cards
-let the duel continues with a “winner take all” condition
+let the duel continues with a "winner take all" condition
 * The comedian (Chatbot) have a limit within a volley where he has to forfeit, as the dealer hitting 17 at Blackjack.
  
 **Exemple:**
-Let’s assume that one joke is one “round” (r) and that each volley is worth one point.  
+Let’s assume that one joke is one "round" (r) and that each volley is worth one point.  
   r1#0 ~Comedian: So I was having dinner with my wife, right…  
   r1#1 ~Player: Your wife’s a whore!  
   r1#1 ~Comedian: Don’t you think it’s a harsh thing to say about your mom?  
