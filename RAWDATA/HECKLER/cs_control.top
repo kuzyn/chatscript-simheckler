@@ -5,7 +5,7 @@ $cs_token = #DO_INTERJECTION_SPLITTING  | #DO_SUBSTITUTE_SYSTEM   | #DO_NUMBER_M
 ^addtopic(~introductions)
 $cs_control_main = ~control
 $cs_control_post = ~XPOSTPROCESS
-$userprompt = ^"%user: >"
+$userprompt = ^"heckler: >"
 $botprompt = ^"comedian: "
 
 table: defaultbot (^name)
@@ -15,17 +15,10 @@ heckler
 
 topic: ~control system ()
 
-# on startup, do introduction
-u: ( %input<%userfirstline) 
-	gambit(~introductions)
-
-# reusable comedian bits
-u: ELIPSE ( < ... > )... ^keep()
-u: LAUGH ( < ha-ha > ) ha-ha! ^keep()
-
 # debug and dev cases
 u: (< shut up >) $shutup = 1
 u: (< talk >) $shutup = null
+u: (< say _*) keep() repeat() '_0
 
 u: (\[ callback \]) Callback seen.
 u: (\[ loopback \]) Loopback seen.
@@ -34,6 +27,9 @@ u: (< loopback test) \[ loopback=1000 \] Loopback requested.
 u: (< callback test) \[ callback=1000 \] Callback requested.
 u: (< alarm test) \[ alarm=5000 \] Alarm requested.
 
+# on startup, do introduction
+u: ( %input<%userfirstline) 
+	gambit(~introductions)
 
 u: () # main per-sentence processing
 
@@ -71,10 +67,10 @@ u: () # main per-sentence processing
 	# having no good response we know, now generate quibbles
 
 	# now we need to find fake responses 
-	if (%response == 0 AND %rand > 50)
-	{
-		nofail(TOPIC respond(~QUIBBLE_ALL))
-	}
+	# if (%response == 0 AND %rand > 50)
+	# {
+	# 	nofail(TOPIC respond(~QUIBBLE_ALL))
+	# }
 
 	# if we have rejoinders for what we said OR we asked a question, stop here
 	if (%outputrejoinder OR %lastquestion) 
@@ -118,8 +114,6 @@ u: () # main per-sentence processing
 		 ^repeat() 
 		 I don't know what to say. 
 	}
-
-
 
 topic: ~XPOSTPROCESS system () # gambits only - not allowed to write to  output - generates speech on windows -- for Linux you'd want to install Festival (or equivalent) and call that instead.
 

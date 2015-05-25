@@ -1,0 +1,6 @@
+topic: ~reuseables system ()
+
+# reusable comedian bits
+u: ELIPSE ( < ... > )... ^keep()
+u: LAUGH ( < ha-ha > ) ha-ha! ^keep()
+u: MOVEONE ( < move on > ) [Anyway...] [So, as I was saying...] [Hm. Okay... So...] ^keep()
