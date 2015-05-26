@@ -3,5 +3,4 @@
 
 topic: ~keywordless nostay()
 
-#! yes, if user just says OK or yes or continue, then move along and give control to bot
-# u: ( < [~yesanswer ~more]>) ^keep() gambit($$currenttopic) # current topic gets to continue
+u: ( * ) ^keep()  [What was that?] [Come again?] [I didn't get that, what?] [Wait, what?]
