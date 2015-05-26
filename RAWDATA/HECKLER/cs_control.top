@@ -4,7 +4,6 @@ $cs_token = #DO_INTERJECTION_SPLITTING  | #DO_SUBSTITUTE_SYSTEM   | #DO_NUMBER_M
 
 ^addtopic(~introductions)
 $cs_control_main = ~control
-$cs_control_post = ~XPOSTPROCESS
 $userprompt = ^"heckler: >"
 $botprompt = ^"comedian: "
 
@@ -16,6 +15,8 @@ $crowd_enjoy = null
 $crowd_annoy = null
 $routine_finnished = null
 $set_finnished = null
+$comedian_leaves = null
+$heckle_number = null
 
 table: defaultbot (^name)
 ^createfact(^name defaultbot defaultbot)
@@ -44,105 +45,89 @@ u: () # main per-sentence processing
 
 	$$currenttopic = %topic		# get the current topic at start of volley
 
-	if ( %response == 0 ) {nofail(TOPIC ^rejoinder())}	# try for rejoinders. might generate an answer directly from what we are looking for.
-
-	if (%length == 0 AND %response == 0 )
-	{
-		nofail(TOPIC ^gambit($$currenttopic))  # gambit current topic since no input (usually start of conversation)
-	}
-
-	if (%response == 0) { nofail(TOPIC ^respond($$currenttopic)) } # current topic tries to respond to his input
-
-	if (%response == 0) # see if some other topic has keywords matching his input (given we have no response yet)
-	{
-		@8 = ^keywordtopics()	# get topics referred in input
-		loop()
-		{
-			$$topic = first(@8subject)
-			nofail(TOPIC ^respond($$topic))
-			if (%response != 0) # stop when we find something to say
-			{
-				^end(RULE)	# we are done, this terminates the loop (not the rule)
-			}
-		}
-	}	
-
-	# if no topic reacts, go to the last ditch keywordless topic
-	if (%response == 0) 
-	{
-		nofail(TOPIC ^respond(~keywordless))
-	}
-
-	# having no good response we know, now generate quibbles
-
-	# now we need to find fake responses 
-	# if (%response == 0 AND %rand > 50)
-	# {
-	# 	nofail(TOPIC respond(~QUIBBLE_ALL))
-	# }
-
-	# if we have rejoinders for what we said OR we asked a question, stop here
-	if (%outputrejoinder OR %lastquestion) 
-	{
-		end(TOPIC)
-	}
-
-	if (%response == 0 AND ^marked($$currenttopic)) { nofail(TOPIC ^gambit($$currenttopic)) } # gambit current topic since keywords match current topic
-
-	if (%response == 0) # gambit from ANY matching topic
-	{
-		@8 = ^keywordtopics()	# get topics referred in input
-		loop()
-		{
-			$$topic = first(@8subject)
-			nofail(TOPIC ^Gambit($$topic))	# gambit in best matching topic
-			if (%response != 0) # stop when we find something
-			{
-				^end(RULE)
-			}
-		}
-	}
-	if (%response == 0){ nofail(TOPIC ^gambit($$currenttopic)) } # gambit from current topic even though no keywords matched
-	
-	if ( %response == 0 AND $routine_finnished AND $set_finnished) {
+    # set is finished or comedian has left
+	if ($set_finnished OR $comedian_leaves) {
 		^repeat() ^keep() 
-		[\*the room empties\*] [\*people shuffle\*] [\*people wonder why you're still staring\*]
+		[/*the room empties/*] [/*people shuffle/*] [/*you stand alone/*]
 	}	
 	
-	if ( %response == 0 AND $routine_finnished AND !$set_finnished) {
+	# comedian routine is over
+	if ($routine_finnished AND !$set_finnished) {
 		Thank you $city_name, that was a great night!
 		$set_finnished = 1
 	}
 
-#	if (%response == 0) 
-#	{ 
-#		@8 = ^GambitTopics()		# all topics with gambits (excluding system topics)
-#		loop()
-#		{
-#			$$topic = pick(@8subject)
-#			nofail(TOPIC ^Gambit($$topic))	# try a topic at random
-#			if (%response != 0)
-#			{
-#				^end(RULE)
-#			}
-#		}
-#	}
-	
-#	if (%response == 0) 
-#	{
-#		 ^repeat() 
-#		 I don't know what to say. 
-#	}
+	# comedian reach annoyed limit
+	if ($comedian_annoy >= 4 AND !$comedian_leaves) {
+		$routine_finnished = 1 
+		$set_finnished = 1
+		$comedian_leaves = 1
+		OKAY! I'VE HAD IT WITH THE ASSHOLE! CIAO!
+	}
 
-topic: ~XPOSTPROCESS system () # gambits only - not allowed to write to  output - generates speech on windows -- for Linux you'd want to install Festival (or equivalent) and call that instead.
+	# wrap everything else so there is no processing if the set is over
+	if (!$set_finnished OR !$comedian_leaves) {
 
-t: (^query(direct_v ? chatoutput ? -1 ? @9  ))  # get the sentences  (why is the object) -- no longer has quotes around it
-	loop()
-	{
-		$$tmp = ^last(@9subject) # note last output which is quoted string
-		if (!%server AND %os == windows  AND !$SHUTUP)
+		if ( %response == 0 ) {nofail(TOPIC ^rejoinder())}	# try for rejoinders. might generate an answer directly from what we are looking for.
+
+		if (%length == 0 AND %response == 0 )
 		{
-			$$tmp = ^"talk \"$$tmp\" "
-			popen($$tmp null)
+			nofail(TOPIC ^gambit($$currenttopic))  # gambit current topic since no input (usually start of conversation)
 		}
+
+
+		if (%response == 0) { nofail(TOPIC ^respond($$currenttopic)) } # current topic tries to respond to his input
+
+		if (%response == 0) # see if some other topic has keywords matching his input (given we have no response yet)
+		{
+			@8 = ^keywordtopics()	# get topics referred in input
+			loop()
+			{
+				$$topic = first(@8subject)
+				nofail(TOPIC ^respond($$topic))
+				if (%response != 0) # stop when we find something to say
+				{
+					^end(RULE)	# we are done, this terminates the loop (not the rule)
+				}
+			}
+		}	
+
+
+		# if we have rejoinders for what we said OR we asked a question, stop here
+		if (%outputrejoinder OR %lastquestion) 
+		{
+			end(TOPIC)
+		}
+
+		if (%response == 0 AND ^marked($$currenttopic)) { nofail(TOPIC ^gambit($$currenttopic)) } # gambit current topic since keywords match current topic
+
+		if (%response == 0) # gambit from ANY matching topic
+		{
+			@8 = ^keywordtopics()	# get topics referred in input
+			loop()
+			{
+				$$topic = first(@8subject)
+				nofail(TOPIC ^Gambit($$topic))	# gambit in best matching topic
+				if (%response != 0) # stop when we find something
+				{
+					$heckle_number += 1
+					!!!HECKLE NUMBER $heckle_number!!!
+					^end(RULE)
+				}
+			}
+		}
+		# if no topic reacts, go to the last ditch keywordless topic
+		if ( %length >= 1 AND %response == 0 ) 
+		{
+			nofail( TOPIC ^respond(~keywordless) )
+			if (%response == 1) {
+				^repeat() ^keep()
+				$comedian_annoy += 1
+				$heckle_number += 1 
+				!!!ANNOYED LEVEL $comedian_annoy!!!	
+			}
+		}
+
+		if (%response == 0){ nofail(TOPIC ^gambit($$currenttopic)) } # gambit from current topic even though no keywords matched
+
 	}
