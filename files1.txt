@@ -1,0 +1,5 @@
+# underlying conversation system
+RAWDATA/HECKLER/	
+
+# quibble ability
+# RAWDATA/QUIBBLE/

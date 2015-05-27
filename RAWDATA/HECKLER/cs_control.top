@@ -13,10 +13,12 @@ $comedian_enjoy = null
 $comedian_annoy = null
 $crowd_enjoy = null
 $crowd_annoy = null
-$routine_finnished = null
-$set_finnished = null
+$routine_finished = null
+$set_finished = null
 $comedian_leaves = null
 $heckle_number = null
+$just_been_heckled = null
+$last_routine_bit = null
 
 table: defaultbot (^name)
 ^createfact(^name defaultbot defaultbot)
@@ -41,44 +43,64 @@ u: (< alarm test) \[ alarm=5000 \] Alarm requested.
 u: ( %input<%userfirstline) 
 	^gambit(~introductions)
 
-u: () # main per-sentence processing
+u: () # main per-sentence processing been
 
 	$$currenttopic = %topic		# get the current topic at start of volley
 
     # set is finished or comedian has left
-	if ($set_finnished OR $comedian_leaves) {
+	if ($set_finished OR $comedian_leaves) {
 		^repeat() ^keep() 
 		[/*the room empties/*] [/*people shuffle/*] [/*you stand alone/*]
 	}	
 	
 	# comedian routine is over
-	if ($routine_finnished AND !$set_finnished) {
+	if ($routine_finished AND !$set_finished) {
 		Thank you $city_name, that was a great night!
-		$set_finnished = 1
+		$set_finished = 1
 	}
 
 	# comedian reach annoyed limit
 	if ($comedian_annoy >= 4 AND !$comedian_leaves) {
-		$routine_finnished = 1 
-		$set_finnished = 1
+		$routine_finished = 1 
+		$set_finished = 1
 		$comedian_leaves = 1
 		OKAY! I'VE HAD IT WITH THE ASSHOLE! CIAO!
 	}
 
 	# wrap everything else so there is no processing if the set is over
-	if (!$set_finnished OR !$comedian_leaves) {
+	if (!$set_finished OR !$comedian_leaves) {
 
-		if ( %response == 0 ) {nofail(TOPIC ^rejoinder())}	# try for rejoinders. might generate an answer directly from what we are looking for.
+		# try for rejoinders. might generate an answer directly from what we are looking for.
+		if ( %response == 0) {
+			nofail(TOPIC ^rejoinder())
 
-		if (%length == 0 AND %response == 0 )
-		{
-			nofail(TOPIC ^gambit($$currenttopic))  # gambit current topic since no input (usually start of conversation)
+			if ( %response == 1 AND $just_been_heckled) {
+			$comedian_annoy += 1
+			$heckle_number += 1
+			$just_been_heckled = 1 
+			!!!ANNOYED LEVEL $comedian_annoy!!!	
+			}
 		}
 
+		# if the comedian has just heckled, he rejoin the conversation
+		if ($just_been_heckled) {
+			$just_been_heckled = null
+			^keep() ^repeat()
+			[So, as I was saying...] [Where was I...] [Anyway...So...]	
+			$last_routine_bit
+		}
 
-		if (%response == 0) { nofail(TOPIC ^respond($$currenttopic)) } # current topic tries to respond to his input
+		# gambit current topic since no input (usually start of conversation)
+		if (%length == 0 AND %response == 0 )
+		{
+			nofail(TOPIC ^gambit($$currenttopic))  
+		}
 
-		if (%response == 0) # see if some other topic has keywords matching his input (given we have no response yet)
+		# current topic tries to respond to his input
+		if (%response == 0) { nofail(TOPIC ^respond($$currenttopic)) } 
+
+		# see if some other topic has keywords matching his input (given we have no response yet)
+		if (%response == 0) 
 		{
 			@8 = ^keywordtopics()	# get topics referred in input
 			loop()
@@ -92,17 +114,19 @@ u: () # main per-sentence processing
 			}
 		}	
 
-
 		# if we have rejoinders for what we said OR we asked a question, stop here
 		if (%outputrejoinder OR %lastquestion) 
 		{
 			end(TOPIC)
 		}
 
-		if (%response == 0 AND ^marked($$currenttopic)) { nofail(TOPIC ^gambit($$currenttopic)) } # gambit current topic since keywords match current topic
+		# gambit current topic since keywords match current topic
+		if (%response == 0 AND ^marked($$currenttopic)) { nofail(TOPIC ^gambit($$currenttopic)) } 
 
-		if (%response == 0) # gambit from ANY matching topic
+		# gambit from ANY matching topic
+		if (%response == 0) 
 		{
+			$last_routine_bit = ^lastsaid() # save the last part of the story to reuse it 
 			@8 = ^keywordtopics()	# get topics referred in input
 			loop()
 			{
@@ -111,6 +135,7 @@ u: () # main per-sentence processing
 				if (%response != 0) # stop when we find something
 				{
 					$heckle_number += 1
+					$just_been_heckled = 1
 					!!!HECKLE NUMBER $heckle_number!!!
 					^end(RULE)
 				}
@@ -123,11 +148,13 @@ u: () # main per-sentence processing
 			if (%response == 1) {
 				^repeat() ^keep()
 				$comedian_annoy += 1
-				$heckle_number += 1 
+				$heckle_number += 1
+				$just_been_heckled = 1 
 				!!!ANNOYED LEVEL $comedian_annoy!!!	
 			}
 		}
 
-		if (%response == 0){ nofail(TOPIC ^gambit($$currenttopic)) } # gambit from current topic even though no keywords matched
+		# gambit from current topic even though no keywords matched
+		if (%response == 0){ nofail(TOPIC ^gambit($$currenttopic)) } 
 
 	}
