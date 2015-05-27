@@ -17,9 +17,9 @@ t: ( %input<%userfirstline )
 
 #!x issued only once, then erased
 t: How are you doing tonight?
-	a: ( ~goodness ) Alright! Let's get to it then ^reuse(reuseables.ELIPSE) ^gambit( short )
+	a: ( ~goodness ) Alright! Let's get to it then... ^gambit( short )
 	a: ( ~badness ) Booh-ooo! Well I don't really care! ^reuse(reuseables.LAUGH) ^gambit( short )
-	a: ( * ) ^gambit( short )
+	a: ( * ) Okay... So... ^gambit( short )
 
 #! what is your name 
 u: ( what is your name ) My name is James Carlton.

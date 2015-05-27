@@ -1,6 +1,9 @@
 topic: ~heckler_emocurse nostay (~emocurse)
 
-t: (fuck you) Ah! FUCK YOU!
+t: (fuck you) Ah! Really funny.
+	a: (fuck you) FUCK YOU BUDDY!
+		b: (fuck you) FUCK!
+			c: (fuck you) FUUUUUUUUCK!
 
 t: (eat shit) That's not very nice.
 

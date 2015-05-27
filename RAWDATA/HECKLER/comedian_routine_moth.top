@@ -38,4 +38,4 @@ t: "Just barely hanging on to my web with an everlasting fire underneath me. Iâ€
 
 t: And so the doctor says, "Moth, man, youâ€™re troubled. But you should be seeing a psychiatrist. Why on earth did you come here?"
 
-t: And the moth says, "Cause the light was on." $routine_finnished = 1
+t: And the moth says, "Cause the light was on." $routine_finished = 1
