@@ -5,7 +5,8 @@ _v0.0.1 / Mai 2015_
 CS 5.31
 
 ### Installation
-* drop into the ChatScript directory
+* download & install the latest [Chatscript](http://sourceforge.net/projects/chatscript/files/latest/download?source=files) version
+* drop this repo into the ChatScript directory
 * on Linux, ```cd``` to directory and do ```./LinuxChatScript* local```
 * do ``` :build Heckler ```
 * heckle!!!
