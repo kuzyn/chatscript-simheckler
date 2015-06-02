@@ -82,7 +82,7 @@ concept: ~become_visible (arise dawn emerge erupt issue pop_up re-emerge reappea
 concept: ~bedeacquired (defraud defrock depose desert disarm disinherit disown lose oust overthrow raffle relinquish spend usurp )
 concept: ~befriend (ally associate befriend friend )
 concept: ~begiven (accept borrow cadge inherit receive )
-concept: ~block_access  (ban bar block constrain criminalise criminalize decertify deny disallow exclude illegalise illegalize proscribe restrict withhold )
+concept: ~block_access  (ban bar block constrain criminalise criminalize decertify decline deny disallow exclude illegalise illegalize proscribe refuse reject restrict withhold )
 concept: ~block_access_containment (clog close lock seal shut )
 concept: ~blood_ill (blanch bleed blench faint hemorrhage pale )
 concept: ~bodily_activities_verbs (~CLOTHING_VERBS ~GROOM )
@@ -331,8 +331,8 @@ concept: ~medical_improve (alleviate anesthetise antisepticize assuage bandage c
 concept: ~meet (acquaint encounter introduce meet )
 concept: ~mental_verbs (~COUNT ~EXORCIZE ~JUDGEMENT_VERBS ~PLAY ~REMEMBER ~THINK_VERBS ~WORSHIP )
 concept: ~mine (excavate mine quarry strip_mine surface_mine )
-concept: ~misc_negative_emotions (alarm alienate annoy appal bewail beware bewilder confuse disappoint disapprove displease embarrass frighten frown glare 
-          glower grimace groan growl horrify irk irritate moan pester pout provoke regret scare scoff scowl sigh simper sneer sniff snivel spit 
+concept: ~misc_negative_emotions (afraid alarm alienate annoy appall bewail beware bewilder confuse disappoint disapprove displease embarrass frighten frown glare 
+          glower grimace groan growl horrify irk irritate mad moan pester pout provoke regret scare scoff scowl sigh simper sneer sniff snivel spit 
           suffer sulk vex worry )
 concept: ~misc_positive_emotions (astound attract beam bedazzle beguile blush excite flirt gratify hope ooh please rejoice smile tantalize whistle )
 concept: ~motion_ill (convulse quake quiver shake shiver shudder spasm swoon tremble twitch writhe )

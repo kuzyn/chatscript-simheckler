@@ -380,3 +380,29 @@ DATA:
   "Bank of Hawaii" (BOH) bank
   "Citibank" (Citi Citigroup) bank
   "Electronic Arts" videogame
+
+concept: ~use_power(plug power electricity battery disconnect connect)
+concept: ~use_flight(fly glide dive)
+concept: ~use_swim(swim dive)
+concept: ~use_fooddrink(~ingesting_verbs food drink ~nutrient thirsty hungry thirst hunger)
+concept: ~use_movement(~animate_move_verbs)
+concept: ~use_intentionverbs(~active_verbs)
+concept: ~blowing (blow gust)
+concept: ~interrogate (question ask interrogate)
+
+
+table: ~usable  (^item ^verb)
+^createfact(^item uses ^verb)
+DATA:
+[lamp flashlight lantern penlight light_bulb  light fluorescent_light pole_lamp table_lamp desk_lamp ~appliances]  ~use_power
+[~vehicles_air bird~1 ~birds kite balloon] ~use_flight
+[~mammals ~beings bird bird~1 ~birds] ~use_swim
+[~beings] ~use_fooddrink
+[~beings] ~use_movement
+[~beings] ~use_intentionverbs
+[lamp flashlight sun star lantern penlight light_bulb  light fluorescent_light pole_lamp table_lamp desk_lamp] ~emitlight
+[fan wind hurricane cyclone tornado] ~blowing
+witness [testify answer]
+[lawyer attorney prosecutor judge] ~interrogate
+[cook chef sous-chef] ~cooking_verbs
+[~beings being~1] grow # tree grew taller

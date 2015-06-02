@@ -61,7 +61,9 @@ concept: ~good_intelligence_adjectives (acute~a adept~a agile~a alert~a apt~a as
 concept: ~good_quality_adjectives (best~a excellent~a fine~a first-rate~a good~a great~a matchless~a outstanding~a peerless~a superb~a superior~a unrivaled~a )
 concept: ~hardness_adjectives (hard~a impenetrable~a malleable~a soft~a )
 concept: ~health_adjectives (alive~a dead~a dying~a extinct~a healthy~a sickly~a sleeping~a little~a)
-concept: ~height_adjectives (tall~a short~a midget lanky~a gangly~a)
+concept: ~height_adjectives ( ~tall_adjectives ~short_adjectives)
+concept: ~tall_adjectives(tall~a  lanky~a gangly~a high~a)
+concept: ~short_adjectives(short~a midget low~a little~a)
 concept: ~insult_psychology_adjectives (abrasive~a abrupt~a abusive~a aloof~a arrogant~a awful~a bad~a belligerent~a boorish~a boring~a callous~a careless~a clumsy~a combative~a cowardly~a 
           crazy~a creepy~a cruel~a deceitful~a defective~a demonic~a deranged~a disagreeable~a disturbed~a domineering~a evil~a filthy~a foolish~a greedy~a gruesome~a grumpy~a harsh~a horrible~a 
           ignorant~a lacking~a lazy~a malicious~a mean~a mellow~a naive~a nasty~a noisy~a obnoxious~a pathetic~a quarrelsome~a repulsive~a ruthless~a selfish~a silly~a snobbish~a spendthrift~a 
